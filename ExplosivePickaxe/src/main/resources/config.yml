@@ -1,0 +1,86 @@
+# ============================================================
+#  ExplosivePickaxe - Cup No
+# ============================================================
+
+# Cac kich thuoc (mat phang NxN) cho phep
+sizes: [2, 3, 5, 7, 10]
+
+# Dong lore them vao cup khi duoc enchant (phai chua {size}).
+# Plugin dua vao phan chu truoc {size} de nhan ra va thay dong cu khi nang cap.
+enchant:
+  lore: "&c⚡ Nổ &e{size}x{size}"
+  # false = sach chi nang cap len kich thuoc lon hon, khong ha cap cup
+  # (chi ap dung cho cac loai cup, ten ket thuc bang _PICKAXE)
+  allow-downgrade: false
+
+# Sach enchant: nguoi choi keo sach len cup trong tui do de enchant
+book:
+  material: ENCHANTED_BOOK
+  name: "&c&lSách Cúp Nổ &e{size}x{size}"
+  lore:
+    - "&7Kéo sách này lên cúp trong túi đồ"
+    - "&7để biến cúp thành &cCúp Nổ &f{size}x{size}"
+    - "&8(Chỉ dùng được cho cúp)"
+
+mining:
+  # Ngoi (shift) thi chi dao 1 block nhu binh thuong
+  sneak-disables: true
+  # Co goi BlockBreakEvent cho tung block (de WorldGuard, Residence... bao ve duoc)
+  call-break-event: true
+  # Tru do ben cho moi block phu bi pha (ap dung Unbreaking)
+  durability-per-block: true
+  # Neu cup khong du do ben thi dung lai
+  stop-when-broken: true
+  # Block khong bao gio bi pha boi cup no
+  blacklist:
+    - BEDROCK
+    - BARRIER
+    - END_PORTAL_FRAME
+    - END_PORTAL
+    - NETHER_PORTAL
+    - SPAWNER
+    - COMMAND_BLOCK
+    - CHAIN_COMMAND_BLOCK
+    - REPEATING_COMMAND_BLOCK
+    - STRUCTURE_BLOCK
+    - JIGSAW
+    - LIGHT
+  # Chi pha block giong "loai pickaxe" (da, quang, ...). Neu false thi pha ca dat, cat...
+  only-pickaxe-blocks: true
+
+storage:
+  # ALL  = moi vat pham roi ra deu thu vao kho (neu ExtraStorage cho phep luu)
+  # ORES = chi khoang san moi vao kho, con lai vao tui do / roi ra dat
+  mode: ORES
+  # Khoang san bo sung (ngoai cac block ten ket thuc bang _ORE va ANCIENT_DEBRIS)
+  extra-ores: []
+  # Vat pham khong vao kho: INVENTORY (vao tui, day thi roi) hoac DROP (roi xuong dat)
+  overflow: INVENTORY
+  # Khi kho day: vat pham chuyen sang tui do / roi xuong dat
+  notify-full: true
+
+effects:
+  particle: true
+  sound: true
+  # Chi tao hieu ung nho gon, KHONG gay no that su (khong hai block / nguoi choi)
+
+messages:
+  prefix: "&8[&cCúp Nổ&8] "
+  no-permission: "&cBạn không có quyền."
+  invalid-size: "&cKích thước không hợp lệ. Cho phép: &f{sizes}"
+  player-not-found: "&cKhông tìm thấy người chơi."
+  not-pickaxe: "&cHãy cầm một chiếc cúp trên tay."
+  not-explosive: "&cCúp đang cầm chưa phải cúp nổ."
+  enchanted: "&aĐã enchant cúp thành &cCúp Nổ &e{size}x{size}&a."
+  removed: "&aĐã gỡ enchant nổ khỏi cúp."
+  book-given: "&aĐã đưa &f{player} &asách cúp nổ &e{size}x{size}&a."
+  book-received: "&aBạn nhận được sách cúp nổ &e{size}x{size}&a."
+  book-not-pickaxe: "&cSách này chỉ dùng được cho cúp."
+  book-not-better: "&cCúp này đã có cúp nổ &e{current}x{current} &ctrở lên rồi."
+  reloaded: "&aĐã tải lại cấu hình."
+  storage-full: "&cKho ExtraStorage đã đầy! Vật phẩm chuyển sang túi đồ."
+  usage:
+    - "&e/cupno enchant <kích thước> &7(enchant cúp đang cầm)"
+    - "&e/cupno remove &7(gỡ enchant khỏi cúp đang cầm)"
+    - "&e/cupno book <người chơi> <kích thước> &7(đưa sách enchant)"
+    - "&e/cupno reload"
