@@ -1,0 +1,44 @@
+name: Build ExplosivePickaxe
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v5
+        with:
+          java-version: "17"
+          distribution: temurin
+          cache: maven
+          cache-dependency-path: ExplosivePickaxe/pom.xml
+
+      - name: Verify project structure
+        run: |
+          echo "Repository root:"
+          ls -la
+          echo "ExplosivePickaxe project:"
+          ls -la ExplosivePickaxe
+          test -f ExplosivePickaxe/pom.xml
+      - name: Build with Maven
+        working-directory: ./ExplosivePickaxe
+        run: mvn -B clean package
+
+      - name: Find generated JAR
+        run: |
+          echo "Generated JAR files:"
+          find ExplosivePickaxe/target -maxdepth 1 -type f -name "*.jar" -print
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: ExplosivePickaxe
+          path: ExplosivePickaxe/target/*.jar
+          if-no-files-found: error
