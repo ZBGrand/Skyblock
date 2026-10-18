@@ -1,0 +1,7 @@
+name: LimbusSkills
+version: 1.0
+main: com.example.limbus.LimbusSkills
+api-version: 1.20
+depend: [MythicLib, MMOItems]
+author: you
+description: Limbus Company inspired skills for MMOItems
