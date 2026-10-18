@@ -1,0 +1,22 @@
+name: OneBlockStorageBridge
+version: '${project.version}'
+main: com.luckyvn.oneblockstorage.OneBlockStorageBridge
+api-version: '1.20'
+authors: [LuckyVN]
+description: Lệnh và PlaceholderAPI cho kho cá nhân của OneBlockCore
+depend: [OneBlockCore]
+softdepend: [PlaceholderAPI]
+
+commands:
+  obstorage:
+    description: Lệnh kho OneBlockCore
+    aliases: [obs]
+    usage: /<command> <balance|withdraw|add>
+
+permissions:
+  obstorage.use:
+    description: Dùng balance và withdraw
+    default: true
+  obstorage.admin:
+    description: Dùng lệnh add xem kho người khác
+    default: op

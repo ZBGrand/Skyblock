@@ -1,0 +1,42 @@
+# OneBlockStorageBridge
+# Màu dùng ký hiệu &. Biến trong tin nhắn viết dạng {ten}.
+
+placeholders:
+  # Trả về khi OneBlockCore/kho chưa sẵn sàng
+  not-ready: "N/A"
+  # %obstorage_filter%
+  filter-on: "Bật"
+  filter-off: "Tắt"
+  # Thời gian cache số dư cho placeholder (mili giây). Scoreboard/tab refresh liên tục
+  # nên không nên đặt 0.
+  cache-ms: 1000
+
+messages:
+  prefix: "&8[&bKho&8] &7"
+  no-permission: "&cBạn không có quyền dùng lệnh này."
+  only-player: "&cLệnh này chỉ dùng được trong game."
+  not-ready: "&cKho chưa sẵn sàng, thử lại sau."
+  unknown-material: "&cKhông tìm thấy loại block &f{input}&c."
+  player-not-found: "&cKhông tìm thấy người chơi &f{input}&c."
+  invalid-amount: "&cSố lượng phải là số nguyên dương."
+  not-allowed: "&c{material} không nằm trong danh mục được phép của kho."
+  error: "&cCó lỗi xảy ra, xem console để biết chi tiết."
+  reloaded: "&aĐã tải lại config."
+
+  help:
+    - "&b/obs balance [block|all] [người chơi] &7- Xem số dư kho"
+    - "&b/obs withdraw <block> [số lần] &7- Rút vào túi (mỗi lần tối đa theo config kho)"
+    - "&b/obs add <người chơi> <block> <số lượng> &7- (admin) Thêm block vào kho"
+    - "&b/obs reload &7- (admin) Tải lại config"
+
+  balance-header: "&7Kho của &f{player}&7: &f{total}&7/&f{capacity} &7(đang giữ chỗ: &f{pending}&7)"
+  balance-entry: "&8- &f{material}&7: &a{amount}"
+  balance-empty: "&7Kho trống."
+  balance-single: "&f{player} &7có &a{amount} &f{material} &7trong kho."
+
+  withdraw-summary: "&7Đã rút tổng cộng &a{amount} &f{material} &7sau &f{times} &7lần."
+  withdraw-ambiguous: "&eKết quả rút chưa rõ. Hãy báo admin để đối soát, đừng thử lại liên tục."
+
+  add-success: "&aĐã thêm &f{amount} {material} &avào kho của &f{player}&a."
+  add-failed: "&cKhông giữ chỗ được (kho đầy, chưa sẵn sàng, block không hợp lệ hoặc lỗi lưu trữ)."
+  add-commit-failed: "&cGiữ chỗ được nhưng commit thất bại. Kiểm tra log trước khi thử lại."
